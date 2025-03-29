@@ -1,0 +1,53 @@
+<div class="modal-overlay">
+  <div class="modal">
+    <h2>Nuevo Cliente</h2>
+
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <!-- Shared Key -->
+      <label>
+        Shared Key:
+        <input formControlName="sharedKey" />
+        <div class="error" *ngIf="form.get('sharedKey')?.touched && form.get('sharedKey')?.invalid">
+          <small>Shared key is required.</small>
+        </div>
+      </label>
+
+      <!-- Business ID -->
+      <label>
+        Business ID:
+        <input formControlName="businessId" />
+        <div class="error" *ngIf="form.get('businessId')?.touched && form.get('businessId')?.invalid">
+          <small>Business ID is required.</small>
+        </div>
+      </label>
+
+      <!-- Email -->
+      <label>
+        Email:
+        <input formControlName="email" type="email" />
+        <div class="error" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+          <small *ngIf="form.get('email')?.errors?.['required']">Email is required.</small>
+          <small *ngIf="form.get('email')?.errors?.['email']">Email format is invalid.</small>
+        </div>
+      </label>
+
+      <!-- Phone -->
+      <label>
+        Phone:
+        <input formControlName="phone" />
+        <div class="error" *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">
+          <small>Phone is required.</small>
+        </div>
+      </label>
+
+      <!-- Botones -->
+      <div class="acciones">
+        <button type="submit" class="btn azul" [disabled]="form.invalid">Guardar</button>
+        <button type="button" class="btn gris" (click)="close.emit()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+

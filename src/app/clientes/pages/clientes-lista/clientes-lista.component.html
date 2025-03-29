@@ -1,0 +1,62 @@
+<!-- Encabezado con título y botones -->
+<div class="clientes-header">
+  <h2>Clients</h2>
+  <div class="acciones">
+    <button class="btn azul" (click)="mostrarModal = true">+ New</button>
+    <button class="btn gris" (click)="exportarCSV()">Export</button>
+  </div>
+</div>
+
+<!-- Búsqueda -->
+<div class="busqueda">
+  <input
+    type="text"
+    placeholder="Enter shared key"
+    [(ngModel)]="filtroSharedKey"
+  />
+  <button class="btn gris" (click)="buscar()">Search</button>
+  <button class="btn azul claro">Advanced Search</button>
+</div>
+
+<!-- Tabla con scroll horizontal en mobile -->
+<div class="tabla-scroll">
+  <table class="clientes-table">
+    <thead>
+      <tr>
+        <th>Shared Key</th>
+        <th>Business ID</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Data Added</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.sharedKey }}</td>
+        <td>{{ cliente.businessId }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.phone }}</td>
+        <td>{{ cliente.dataAdded }}</td>
+        <td>
+          <button class="btn icono" title="Editar">✏️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Mensaje si no hay resultados -->
+<p *ngIf="!loading && clientes.length === 0">
+  No clients found with the selected filter.
+</p>
+
+<!-- Modal de nuevo cliente -->
+<app-cliente-form
+  *ngIf="mostrarModal"
+  (close)="mostrarModal = false"
+  (clienteCreado)="onClienteCreado($event)"
+></app-cliente-form>
+
+
+

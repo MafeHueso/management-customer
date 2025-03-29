@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none; // o ponerla como deslizable
+  }
+
+  .main-content {
+    padding: 0.5rem;
+  }
+
+  .clientes-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .acciones {
+      margin-top: 1rem;
+    }
+  }
+
+  .busqueda {
+    flex-direction: column;
+    align-items: flex-start;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .clientes-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
